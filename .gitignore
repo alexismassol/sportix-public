@@ -11,8 +11,10 @@ server/node_modules/
 dist/
 front/dist/
 front/.angular/
-server/data/*.db
-!server/data/.gitkeep
+server/src/data/*.db
+server/src/data/*.db-shm
+server/src/data/*.db-wal
+!server/src/data/.gitkeep
 
 # === Environment & secrets ===
 .env

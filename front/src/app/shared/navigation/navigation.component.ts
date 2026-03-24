@@ -10,8 +10,9 @@ import { AuthService } from '../../core/services/auth.service';
   template: `
     <nav class="fixed top-0 left-0 right-0 w-full z-[9000] transition-all duration-300 h-16 lg:h-16"
          style="background: rgba(10,14,26,0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06);"
-         (click)="userMenuOpen = false">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between h-16" (click)="$event.stopPropagation()">
+         tabindex="0" (click)="userMenuOpen = false" (keyup.enter)="userMenuOpen = false">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between h-16" 
+           (click)="$event.stopPropagation()" tabindex="0" (keyup.enter)="$event.stopPropagation()">
         <!-- Logo Sport IX (left) -->
         <div class="flex justify-start">
           <a routerLink="/" class="flex items-center gap-1 text-white font-bold text-xl">
@@ -23,17 +24,20 @@ import { AuthService } from '../../core/services/auth.service';
         <!-- Desktop Nav (centered) -->
         <div class="hidden md:flex items-center justify-center gap-6 flex-1">
           <a routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium">
+            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium"
+            tabindex="0" (keyup.enter)="navigateTo('/')">
             Accueil
             <span class="nav-underline"></span>
           </a>
           <a routerLink="/events" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium">
+            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium"
+            tabindex="0" (keyup.enter)="navigateTo('/events')">
             Événements
             <span class="nav-underline"></span>
           </a>
           <a routerLink="/about" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium">
+            class="nav-link relative px-2 py-1 text-white/70 hover:text-white transition-all duration-300 text-sm font-medium"
+            tabindex="0" (keyup.enter)="navigateTo('/about')">
             À propos
             <span class="nav-underline"></span>
           </a>
@@ -70,7 +74,9 @@ import { AuthService } from '../../core/services/auth.service';
                     </div>
                   </a>
                   <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4px; padding-top: 4px;">
-                    <button (click)="logout(); userMenuOpen = false" class="block w-full px-4 py-2 text-sm text-left text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors">
+                    <button (click)="logout(); userMenuOpen = false" (keyup.enter)="logout(); userMenuOpen = false" 
+                    class="block w-full px-4 py-2 text-sm text-left text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors"
+                    tabindex="0" aria-label="Déconnexion">
                       <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                         Déconnexion
@@ -82,7 +88,10 @@ import { AuthService } from '../../core/services/auth.service';
             </div>
             
             <!-- Mobile: Profile icon that opens mobile menu -->
-            <button (click)="mobileMenuOpen = !mobileMenuOpen" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15);">
+            <button (click)="mobileMenuOpen = !mobileMenuOpen" (keyup.enter)="mobileMenuOpen = !mobileMenuOpen" 
+              class="md:hidden w-8 h-8 rounded-full flex items-center justify-center" 
+              style="background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15);"
+              tabindex="0" aria-label="Menu mobile">
               <span class="font-bold text-sm" style="color: rgba(255,255,255,0.85);">{{ getUserInitial() }}</span>
             </button>
           } @else {
@@ -93,7 +102,8 @@ import { AuthService } from '../../core/services/auth.service';
           }
           
           <!-- Mobile menu toggle -->
-          <button (click)="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 text-white">
+          <button (click)="mobileMenuOpen = !mobileMenuOpen" (keyup.enter)="mobileMenuOpen = !mobileMenuOpen" 
+            class="md:hidden p-2 text-white" tabindex="0" aria-label="Menu navigation">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               @if (mobileMenuOpen) {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -108,7 +118,9 @@ import { AuthService } from '../../core/services/auth.service';
 
     <!-- Mobile Sidebar Overlay -->
     @if (mobileMenuOpen) {
-      <div class="md:hidden fixed inset-0 z-[9000]" style="background: rgba(0,0,0,0.6);" (click)="mobileMenuOpen = false"></div>
+      <div class="md:hidden fixed inset-0 z-[9000]" style="background: rgba(0,0,0,0.6);" 
+           tabindex="0" (click)="mobileMenuOpen = false" (keyup.enter)="mobileMenuOpen = false" 
+           aria-label="Fermer le menu mobile"></div>
     }
 
     <!-- Mobile Sidebar -->
@@ -215,7 +227,7 @@ import { AuthService } from '../../core/services/auth.service';
     }
     
     /* Ensure mobile nav styles don't affect desktop */
-    .md\:hidden .nav-active {
+    .md:hidden .nav-active {
       color: white !important;
       background: var(--accent-gradient) !important;
     }
@@ -238,5 +250,9 @@ export class NavigationComponent {
   logout(): void {
     this.auth.logout();
     this.router.navigate(['/auth/login']);
+  }
+
+  navigateTo(path: string): void {
+    this.router.navigate([path]);
   }
 }

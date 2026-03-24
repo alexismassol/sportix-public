@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventService } from '../../core/services/event.service';
 import { ScanResult } from '../../core/models/event.model';
@@ -90,7 +90,7 @@ export class DemoScanBilletComponent {
     // Simulate network delay
     setTimeout(() => {
       this.eventService.scanTicket(qrCode).subscribe({
-        next: (result) => {
+        next: (result: ScanResult) => {
           this.result = result;
           this.scanning = false;
         },
