@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════
-# Docker Clean Script — Sportix Public Demo
+# Docker Clean Script — Sportix
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Usage: ./scripts/clean-docker.sh [OPTIONS]
@@ -29,7 +29,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo ""
-echo "🧹 Sportix Public Demo — Nettoyage Docker"
+echo "🧹 Sportix — Nettoyage Docker"
 echo "========================================="
 echo ""
 

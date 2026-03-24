@@ -1,6 +1,6 @@
-# Sportix Public Demo
+# Sportix
 
-**Projet démo public** de la plateforme de billetterie sportive **Sport IX** — développé par **Alexis MASSOL**.
+**Projet démo** de la plateforme de billetterie sportive **Sport IX** — développé par **Alexis MASSOL**.
 
 > Application web complète : Angular 21.2.5 (frontend) + Node.js 22 (backend) + SQLite (base de données).
 
@@ -12,7 +12,7 @@
 
 Sport IX est une plateforme de billetterie sportive digitale permettant aux clubs sportifs de vendre des billets en ligne et aux spectateurs d'accéder aux événements via QR code sur mobile.
 
-Ce dépôt est une **version démo publique** qui présente :
+Ce dépôt est une **version démo** qui présente :
 - L'architecture frontend/backend découplée
 - Le système de design réutilisable (tokens CSS, mixins, animations)
 - L'authentification JWT

@@ -12,7 +12,7 @@ async function globalSetup(config: FullConfig) {
   const page = await context.newPage();
 
   try {
-    console.log('🔐 Configuration de l\'authentification E2E pour Sportix Public Demo...');
+    console.log('🔐 Configuration de l\'authentification E2E pour Sportix...');
     
     // Utiliser les comptes de test existants
     const spectatorData = {

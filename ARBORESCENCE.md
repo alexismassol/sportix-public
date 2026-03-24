@@ -1,4 +1,4 @@
-# Arborescence — Sportix Public Demo
+# Arborescence — Sportix
 
 ```
 sportix-public/

@@ -1,4 +1,4 @@
-# Spécification Technique — Sportix Public Demo
+# Spécification Technique — Sportix
 
 **Version** : 1.0.0
 **Auteur** : Alexis MASSOL
@@ -8,7 +8,7 @@
 
 ## 1. Vue d'ensemble
 
-Sportix Public Demo est une version démonstrative de la plateforme de billetterie sportive Sport IX. L'application est composée de :
+Ce projet est une version démonstrative de la plateforme de billetterie sportive Sport IX. L'application est composée de :
 
 - **Frontend** : Angular 21.2.5 (standalone components, signals)
 - **Backend** : Node.js 22 + Express 4

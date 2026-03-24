@@ -2,7 +2,7 @@
   "name": "sportix-public-api",
   "version": "1.0.0",
   "type": "module",
-  "description": "Backend API pour Sportix Public Demo",
+  "description": "Backend API pour Sportix",
   "main": "src/index.js",
   "author": "Alexis MASSOL",
   "license": "UNLICENSED",

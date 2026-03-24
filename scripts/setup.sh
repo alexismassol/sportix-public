@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════
-# Setup Script — Sportix Public Demo
+# Setup Script — Sportix
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Usage: ./scripts/setup.sh
@@ -31,7 +31,7 @@
 
 set -e
 
-echo "🏟️  Sportix Public Demo — Installation"
+echo "🏟️ Sportix - Installation"
 echo "======================================="
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

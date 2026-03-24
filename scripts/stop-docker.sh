@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════
-# Docker Stop Script — Sportix Public Demo
+# Docker Stop Script — Sportix
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Usage: ./scripts/stop-docker.sh [OPTIONS]
@@ -37,7 +37,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo ""
-echo "🛑 Sportix Public Demo — Arrêt Docker"
+echo "🛑 Sportix — Arrêt Docker"
 echo "======================================"
 echo ""
 

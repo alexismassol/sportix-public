@@ -1,5 +1,5 @@
 -- ============================================
--- Schema SQLite — Sportix Public Demo
+-- Schema SQLite — Sportix
 -- ============================================
 
 CREATE TABLE IF NOT EXISTS users (

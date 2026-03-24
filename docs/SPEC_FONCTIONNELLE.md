@@ -1,4 +1,4 @@
-# Spécification Fonctionnelle — Sportix Public Demo
+# Spécification Fonctionnelle — Sportix
 
 **Version** : 1.0.0
 **Auteur** : Alexis MASSOL
@@ -8,7 +8,7 @@
 
 ## 1. Objectif
 
-Sportix Public Demo est une vitrine fonctionnelle de la plateforme Sport IX, permettant de démontrer les fonctionnalités clés de la billetterie sportive digitale.
+Ce projet est une vitrine fonctionnelle de la plateforme Sport IX, permettant de démontrer les fonctionnalités clés de la billetterie sportive digitale.
 
 ---
 

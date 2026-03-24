@@ -61,7 +61,7 @@ app.use('/api/scan', scanRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, data: { status: 'ok', version: '1.0.0', name: 'Sportix Public Demo API' } });
+  res.json({ success: true, data: { status: 'ok', version: '1.0.0', name: 'Sportix API' } });
 });
 
 // 404
@@ -95,7 +95,7 @@ if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, '0.0.0.0', () => {
     const localIp = getLocalIp();
 
-    console.log(`\n🏟️  Sportix Public Demo API`);
+    console.log('🏟️  Sportix API started successfully!');
     console.log(`   → http://localhost:${PORT}`);
     if (localIp) {
       console.log(`   → http://${localIp}:${PORT}  (pour Flutter / mobile)`);
