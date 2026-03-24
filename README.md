@@ -1,14 +1,14 @@
-# 🏟️ Sportix Public Demo
+# Sportix Public Demo
 
 **Projet démo public** de la plateforme de billetterie sportive **Sport IX** — développé par **Alexis MASSOL**.
 
 > Application web complète : Angular 21.2.5 (frontend) + Node.js 22 (backend) + SQLite (base de données).
 
-> ⚠️ **AVERTISSEMENT** : Ce projet est une **version de démonstration** destinée à un usage éducatif et portfolio uniquement. Il n'est **PAS conçu pour la production** : il ne contient pas les optimisations de performance, la sécurité avancée, ni l'architecture distribuée de la plateforme Sport IX originale. Voir [LICENSE](./LICENSE) pour les conditions d'utilisation.
+> **AVERTISSEMENT** : Ce projet est une **version de démonstration** destinée à un usage éducatif et portfolio uniquement. Il n'est **PAS conçu pour la production** : il ne contient pas les optimisations de performance, la sécurité avancée, ni l'architecture distribuée de la plateforme Sport IX originale. Voir [LICENSE](./LICENSE) pour les conditions d'utilisation.
 
 ---
 
-## 📋 Présentation
+## Présentation
 
 Sport IX est une plateforme de billetterie sportive digitale permettant aux clubs sportifs de vendre des billets en ligne et aux spectateurs d'accéder aux événements via QR code sur mobile.
 
@@ -25,7 +25,7 @@ Ce dépôt est une **version démo publique** qui présente :
 
 ---
 
-## 🚀 Démarrage rapide
+## Démarrage rapide
 
 ### Prérequis
 - **Node.js** ≥ 22.0.0
@@ -84,7 +84,7 @@ cd docker && docker-compose down
 
 ---
 
-## 🔐 Comptes démo
+## Comptes démo
 
 | Rôle | Email | Mot de passe |
 |------|-------|-------------|
@@ -93,7 +93,7 @@ cd docker && docker-compose down
 
 ---
 
-## 🗂️ Structure du projet
+## Structure du projet
 
 ```
 sportix-public/
@@ -108,7 +108,7 @@ Voir [ARBORESCENCE.md](./ARBORESCENCE.md) pour l'arborescence complète.
 
 ---
 
-## 🧪 Tests
+## Tests
 
 ### Backend (Jest + Supertest)
 ```bash
@@ -137,7 +137,7 @@ npm run test:all                # Backend + Frontend (tous les tests)
 
 ---
 
-## 🎨 Système de design
+## Système de design
 
 Le projet utilise un système de design cohérent basé sur des **tokens CSS** :
 
@@ -150,7 +150,7 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 
 ---
 
-## 📄 Documentation
+## Documentation
 
 - [Spécification Technique](./docs/SPEC_TECHNIQUE.md)
 - [Spécification Fonctionnelle](./docs/SPEC_FONCTIONNELLE.md)
@@ -158,7 +158,7 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 
 ---
 
-## 🛠️ Technologies
+## Technologies
 
 ### Frontend
 - **Angular 21** (standalone components)
@@ -179,7 +179,7 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 
 ---
 
-## 👤 Auteur
+## Auteur
 
 **Alexis MASSOL**
 - Développeur Full Stack
@@ -187,7 +187,7 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 
 ---
 
-## 📝 Licence
+## Licence
 
-Ce projet est la propriété exclusive d'**Alexis MASSOL**. Aucune utilisation commerciale n'est autorisée.
+Ce projet est la propriété exclusive de **Alexis MASSOL**. Aucune utilisation commerciale n'est autorisée.
 Voir [LICENSE](./LICENSE) pour les détails complets.
