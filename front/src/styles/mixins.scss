@@ -1,0 +1,92 @@
+// ============================================
+// MIXINS RÉUTILISABLES — Sport IX 2026 (Public Demo)
+// ============================================
+
+@mixin glass-card($level: 'medium') {
+  @if $level == 'subtle' {
+    background: var(--glass-bg-subtle);
+    backdrop-filter: blur(var(--glass-blur-subtle)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-subtle)) saturate(var(--glass-saturate));
+  } @else if $level == 'strong' {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate));
+  } @else {
+    background: var(--glass-bg-medium);
+    backdrop-filter: blur(var(--glass-blur-medium)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(var(--glass-saturate));
+  }
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: var(--glass-border-top);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-inner-glow);
+}
+
+@mixin glass-card-hover {
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+  }
+}
+
+@mixin accent-button {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--accent-glow);
+  }
+}
+
+@mixin ghost-button {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+
+@mixin stadium-glow {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(232, 25, 44, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(64, 196, 255, 0.05) 0%, transparent 40%);
+}
+
+@mixin neon-accent {
+  box-shadow: 0 0 20px rgba(232, 25, 44, 0.3), 0 0 60px rgba(232, 25, 44, 0.1);
+}
+
+@mixin text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin section-title {
+  font-size: var(--text-h1);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+// Responsive breakpoints
+@mixin mobile { @media (max-width: 480px) { @content; } }
+@mixin tablet { @media (max-width: 768px) { @content; } }
+@mixin desktop { @media (min-width: 1024px) { @content; } }
+@mixin wide { @media (min-width: 1440px) { @content; } }

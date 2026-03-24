@@ -1,0 +1,19 @@
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Copier package.json et package-lock.json
+COPY front/package*.json ./
+
+# Installer avec --legacy-peer-deps pour résoudre les conflits
+RUN npm install --legacy-peer-deps
+
+# Copier le code source
+COPY front/ .
+
+# Build pour optimiser
+RUN npm run build:dev
+
+EXPOSE 4200
+
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200"]

@@ -1,0 +1,58 @@
+# ============================================
+# .gitignore — Sportix Public Demo
+# ============================================
+
+# === Dependencies ===
+node_modules/
+front/node_modules/
+server/node_modules/
+
+# === Build outputs ===
+dist/
+front/dist/
+front/.angular/
+server/data/*.db
+!server/data/.gitkeep
+
+# === Environment & secrets ===
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+ssl/
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Logs ===
+logs/
+*.log
+npm-debug.log*
+
+# === Coverage & tests ===
+coverage/
+front/coverage/
+server/coverage/
+test-results/
+front/test-results/
+playwright-report/
+
+# === OS ===
+Thumbs.db
+.DS_Store
+
+# === Docker ===
+docker/data/
+
+# === Misc ===
+*.tgz
+*.tar.gz
+.cache/
+tmp/

@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.backend
+    container_name: sportix-backend
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - sportix-data:/app/src/data  # Volume persistant pour les données
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - PORT=${PORT:-3000}
+      - JWT_SECRET=${JWT_SECRET:-sportix-demo-jwt-secret-2024}
+      - API_URL=${API_URL:-http://localhost:3000}
+    restart: unless-stopped
+    networks:
+      - sportix-network
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    container_name: sportix-frontend
+    ports:
+      - "${NG_PORT:-4200}:4200"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:3000  # Communication inter-conteneurs
+      - NODE_ENV=${NODE_ENV:-development}
+    restart: unless-stopped
+    networks:
+      - sportix-network
+
+networks:
+  sportix-network:
+    driver: bridge
+    name: ${DOCKER_NETWORK:-sportix-network}
+
+volumes:
+  sportix-data:
+    name: ${COMPOSE_PROJECT_NAME:-sportix-public}-data

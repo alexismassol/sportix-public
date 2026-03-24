@@ -1,0 +1,41 @@
+{
+  "name": "sportix-public-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend API pour Sportix Public Demo",
+  "main": "src/index.js",
+  "author": "Alexis MASSOL",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/database/seed.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --forceExit",
+    "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=tests/unit --forceExit",
+    "test:integration": "NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=tests/integration --forceExit",
+    "test:e2e": "NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=tests/e2e --forceExit",
+    "test:vv": "NODE_OPTIONS=--experimental-vm-modules jest --testPathPattern=tests/vv --forceExit",
+    "lint": "echo 'Lint: no ESLint configured (demo project)' && exit 0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.7.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^6.1.5",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "@jest/globals": "^29.7.0"
+  }
+}

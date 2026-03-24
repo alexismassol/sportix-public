@@ -1,0 +1,85 @@
+// ============================================
+// DESIGN TOKENS — Sport IX 2026 (Public Demo)
+// ============================================
+
+:root {
+  // === Backgrounds ===
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-tertiary: #181C2A;
+  --bg-glass: rgba(255,255,255,0.10);
+  --bg-glass-blue: rgba(22, 33, 58, 0.72);
+  --bg-card: rgba(255,255,255,0.12);
+
+  // === Accent Principal — Rouge Vibrant ===
+  --accent-primary: #FF2D55;
+  --accent-primary-hover: #FF1744;
+  --accent-gradient: linear-gradient(135deg, #FF2D55 0%, #FF6B35 100%);
+  --accent-glow: 0 0 30px rgba(255, 45, 85, 0.3);
+
+  // === Accent Secondaire ===
+  --accent-secondary: #FF6B35;
+  --accent-warm: linear-gradient(135deg, #FF6B35 0%, #FFAB40 100%);
+
+  // === Textes ===
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.7);
+  --text-tertiary: rgba(255,255,255,0.55);
+  --text-accent: #FF2D55;
+
+  // === Utilitaires ===
+  --success: #00E676;
+  --warning: #FFAB40;
+  --error: #FF5252;
+  --info: #40C4FF;
+  --purple: #8B5CF6;
+
+  // === Gradients CTA ===
+  --gradient-success: linear-gradient(135deg, #00C853, #00897B);
+  --gradient-info: linear-gradient(135deg, #2196F3, #1976D2);
+  --gradient-purple: linear-gradient(135deg, #7C3AED, #8B5CF6);
+  --gradient-warning: linear-gradient(135deg, #FF8F00, #FFAB40);
+
+  // === Borders & Surfaces ===
+  --border-subtle: rgba(255,255,255,0.10);
+  --border-accent: rgba(255, 45, 85, 0.3);
+  --border-secondary: rgba(255, 107, 53, 0.25);
+
+  // === Ombres ===
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-elevated: 0 16px 48px rgba(0,0,0,0.5);
+  --shadow-accent: 0 8px 24px rgba(255, 45, 85, 0.2);
+
+  // === Radius ===
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Glass effect — 3 niveaux standardisés */
+  --glass-blur-subtle: 16px;
+  --glass-blur-medium: 24px;
+  --glass-blur-strong: 30px;
+  --glass-bg-subtle: rgba(255,255,255,0.10);
+  --glass-bg-medium: rgba(255,255,255,0.14);
+  --glass-bg-strong: rgba(255,255,255,0.18);
+  --glass-bg-toast: rgba(20, 20, 30, 0.75);
+  --glass-saturate: 180%;
+  --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.08);
+  --glass-border-top: rgba(255,255,255,0.15);
+
+  // === Typographie ===
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --text-hero: clamp(2.5rem, 6vw, 4.5rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.5rem, 3vw, 2rem);
+  --text-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.05em;
+  --tracking-ultra-wide: 0.15em;
+}
