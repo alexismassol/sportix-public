@@ -50,7 +50,7 @@ npm install
 echo ""
 echo "📦 Installation des dépendances frontend..."
 cd "$ROOT_DIR/front"
-npm install
+npm install --legacy-peer-deps
 
 echo ""
 echo "🗄️  Initialisation de la base de données..."
