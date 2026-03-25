@@ -8,7 +8,7 @@
 
 ## 1. Vue d'ensemble
 
-Ce projet est une version démonstrative de la plateforme de billetterie sportive Sport IX. L'application est composée de :
+**Sport IX** (https://sportix.com) est une plateforme de billetterie sportive digitale professionnelle. Ce projet est une **version démo open-source** de l'application, composée de :
 
 - **Frontend** : Angular 21.2.5 (standalone components, signals)
 - **Backend** : Node.js 22 + Express 4

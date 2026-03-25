@@ -8,7 +8,7 @@
 
 ## 1. Objectif
 
-Ce projet est une vitrine fonctionnelle de la plateforme Sport IX, permettant de démontrer les fonctionnalités clés de la billetterie sportive digitale.
+**Sport IX** (https://sportix.com) est une plateforme de billetterie sportive digitale professionnelle. Ce projet est une **version démo open-source** qui permet de démontrer les fonctionnalités clés de la billetterie sportive digitale.
 
 ---
 
