@@ -21,5 +21,6 @@ export const guestGuard: CanActivateFn = () => {
     return true;
   }
 
-  return router.createUrlTree(['/club/dashboard']);
+  const dashboardPath = authService.isClub() ? '/club/dashboard' : '/spectator/dashboard';
+  return router.createUrlTree([dashboardPath]);
 };

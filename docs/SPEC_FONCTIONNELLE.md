@@ -156,11 +156,12 @@
 | France vs Angleterre | Rugby | 05/05/2026 | Stade de France, Paris | 55€ |
 | Finale Coupe de France | Football | 10/05/2026 | Stade de France, Paris | 40€ |
 
-### 5.3 Clubs (3 clubs)
+### 5.3 Clubs organisateurs (exemples dans les données démo)
 
 - RC Toulon (Rugby)
 - AS Saint-Étienne (Football)
-- Stade Bordelais (Rugby)
+- PSG Handball (Handball)
+- FFR / FFT / FFF (Fédérations)
 
 ---
 

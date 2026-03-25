@@ -60,12 +60,12 @@ export const routes: Routes = [
   {
     path: 'demo/scan-billet',
     loadComponent: () => import('./features/demo-scan-billet/demo-scan-billet.component').then(m => m.DemoScanBilletComponent),
-    title: 'Scanner Billet  — Sport IX'
+    title: 'Scanner Billet — Sport IX'
   },
   {
     path: 'demo/scan-credit',
     loadComponent: () => import('./features/demo-scan-credit/demo-scan-credit.component').then(m => m.DemoScanCreditComponent),
-    title: 'Scanner Crédit  — Sport IX'
+    title: 'Scanner Crédit — Sport IX'
   },
   {
     path: '**',

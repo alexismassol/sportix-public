@@ -86,7 +86,7 @@ async function seed() {
   const creditId2 = uuidv4();
   db.prepare('INSERT INTO credits (id, userId, balance, qrCode) VALUES (?, ?, ?, ?)').run(creditId2, spectatorId, 2.00, 'DEMO-CREDIT-LOW');
 
-  console.log('  ✅ 1 crédit wallet créé (45.50€)');
+  console.log('  ✅ 2 crédits wallets créés (45.50€ et 2.00€)');
 
   // === Stats ===
   const insertStat = db.prepare('INSERT INTO stats (key, value, label) VALUES (?, ?, ?)');

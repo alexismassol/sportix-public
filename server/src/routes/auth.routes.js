@@ -6,7 +6,7 @@ import { getDatabase } from '../database/db.js';
 import { authenticateToken } from '../middleware/auth.middleware.js';
 
 const router = Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'sportix-demo-jwt-secret-2024';
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = '24h';
 const SALT_ROUNDS = 10;
 
