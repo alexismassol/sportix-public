@@ -108,12 +108,12 @@ describe('V&V — Cross-Flow Validation', () => {
     it('should scan DEMO-VALID-TICKET and get valid status', async () => {
       // Re-seed the demo ticket to 'valid' status for this test
       const db = getDatabase();
-      db.prepare("UPDATE tickets SET status = 'valid', scannedAt = NULL WHERE qrCode = 'DEMO-VALID-TICKET'").run();
+      db.prepare("UPDATE tickets SET status = 'valid', scannedAt = NULL WHERE qrCode = 'REVNTy1WQUxJRC1USUNLRVQ='").run();
 
       const res = await request(app)
         .post('/api/scan/ticket')
         .set('Authorization', `Bearer ${clubToken}`)
-        .send({ qrCode: 'DEMO-VALID-TICKET' });
+        .send({ qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=' }); // Base64 de 'DEMO-VALID-TICKET'
 
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('valid');
@@ -122,7 +122,7 @@ describe('V&V — Cross-Flow Validation', () => {
       expect(res.body.data.scannedAt).toBeDefined();
 
       // Verify DB state changed
-      const ticket = db.prepare("SELECT status FROM tickets WHERE qrCode = 'DEMO-VALID-TICKET'").get();
+      const ticket = db.prepare("SELECT status FROM tickets WHERE qrCode = 'REVNTy1WQUxJRC1USUNLRVQ='").get();
       expect(ticket.status).toBe('scanned');
     });
 
@@ -142,12 +142,12 @@ describe('V&V — Cross-Flow Validation', () => {
     it('should debit DEMO-CREDIT-OK and return correct balances', async () => {
       // Reset balance for deterministic test
       const db = getDatabase();
-      db.prepare("UPDATE credits SET balance = 45.50 WHERE qrCode = 'DEMO-CREDIT-OK'").run();
+      db.prepare("UPDATE credits SET balance = 45.50 WHERE qrCode = 'REVNTy1DUkVESVQtT0s='").run();
 
       const res = await request(app)
         .post('/api/scan/credit')
         .set('Authorization', `Bearer ${clubToken}`)
-        .send({ qrCode: 'DEMO-CREDIT-OK', amount: 10 });
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: 10 }); // Base64 de 'DEMO-CREDIT-OK'
 
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('valid');
@@ -156,7 +156,7 @@ describe('V&V — Cross-Flow Validation', () => {
       expect(res.body.data.amount).toBe(10);
 
       // Verify DB
-      const credit = db.prepare("SELECT balance FROM credits WHERE qrCode = 'DEMO-CREDIT-OK'").get();
+      const credit = db.prepare("SELECT balance FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtT0s='").get();
       expect(credit.balance).toBe(35.50);
     });
 
@@ -165,7 +165,7 @@ describe('V&V — Cross-Flow Validation', () => {
       // Get the most recent credit scan log for DEMO-CREDIT-OK
       const log = db.prepare(`
         SELECT * FROM scan_logs 
-        WHERE type = 'credit' AND creditId = (SELECT id FROM credits WHERE qrCode = 'DEMO-CREDIT-OK')
+        WHERE type = 'credit' AND creditId = (SELECT id FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtT0s=')
         ORDER BY id DESC LIMIT 1
       `).get();
       expect(log).toBeDefined();
@@ -182,7 +182,7 @@ describe('V&V — Cross-Flow Validation', () => {
       const res = await request(app)
         .post('/api/scan/ticket')
         .set('Authorization', `Bearer ${clubToken}`)
-        .send({ qrCode: 'DEMO-SCANNED-TICKET' });
+        .send({ qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==' }); // Base64 de 'DEMO-SCANNED-TICKET'
 
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('already_scanned');
@@ -196,18 +196,18 @@ describe('V&V — Cross-Flow Validation', () => {
   describe('VV-REQ-05: Insufficient Credit → No Debit', () => {
     it('should reject credit scan when balance is too low', async () => {
       const db = getDatabase();
-      const before = db.prepare("SELECT balance FROM credits WHERE qrCode = 'DEMO-CREDIT-LOW'").get();
+      const before = db.prepare("SELECT balance FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtTE9X'").get();
 
       const res = await request(app)
         .post('/api/scan/credit')
         .set('Authorization', `Bearer ${clubToken}`)
-        .send({ qrCode: 'DEMO-CREDIT-LOW', amount: 100 });
+        .send({ qrCode: 'REVNTy1DUkVESVQtTE9X', debitAmount: 100 }); // Base64 de 'DEMO-CREDIT-LOW'
 
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('insufficient');
 
       // Verify balance unchanged
-      const after = db.prepare("SELECT balance FROM credits WHERE qrCode = 'DEMO-CREDIT-LOW'").get();
+      const after = db.prepare("SELECT balance FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtTE9X'").get();
       expect(after.balance).toBe(before.balance);
     });
   });

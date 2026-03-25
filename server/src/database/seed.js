@@ -64,10 +64,10 @@ async function seed() {
   );
 
   const demoTickets = [
-    { qrCode: 'DEMO-VALID-TICKET', status: 'valid', seatInfo: 'Tribune A — Rang 5, Place 12', eventIndex: 0 },
-    { qrCode: 'DEMO-SCANNED-TICKET', status: 'scanned', seatInfo: 'Tribune B — Rang 3, Place 8', eventIndex: 1 },
-    { qrCode: 'DEMO-REFUNDED-TICKET', status: 'refunded', seatInfo: 'Tribune C — Rang 10, Place 22', eventIndex: 2 },
-    { qrCode: 'SPORTIX-TICKET-VALID-2', status: 'valid', seatInfo: 'Pelouse — Entrée libre', eventIndex: 0 },
+    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', status: 'valid', seatInfo: 'Tribune A — Rang 5, Place 12', eventIndex: 0 }, // Base64 de 'DEMO-VALID-TICKET'
+    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', status: 'scanned', seatInfo: 'Tribune B — Rang 3, Place 8', eventIndex: 1 }, // Base64 de 'DEMO-SCANNED-TICKET'
+    { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', status: 'refunded', seatInfo: 'Tribune C — Rang 10, Place 22', eventIndex: 2 }, // Base64 de 'DEMO-REFUNDED-TICKET'
+    { qrCode: 'U1BPUlRJWC1USUNLRVQtVkFMSUQtMg==', status: 'valid', seatInfo: 'Pelouse — Entrée libre', eventIndex: 0 }, // Base64 de 'SPORTIX-TICKET-VALID-2'
     { qrCode: 'SPORTIX-TICKET-VIP', status: 'valid', seatInfo: 'VIP — Loge 4', eventIndex: 1 },
   ];
 
@@ -80,11 +80,11 @@ async function seed() {
 
   // === Credits (for the spectator) ===
   const creditId = uuidv4();
-  db.prepare('INSERT INTO credits (id, userId, balance, qrCode) VALUES (?, ?, ?, ?)').run(creditId, spectatorId, 45.50, 'DEMO-CREDIT-OK');
+  db.prepare('INSERT INTO credits (id, userId, balance, qrCode) VALUES (?, ?, ?, ?)').run(creditId, spectatorId, 45.50, 'REVNTy1DUkVESVQtT0s='); // Base64 de 'DEMO-CREDIT-OK'
 
   // Second credit wallet with low balance for demo
   const creditId2 = uuidv4();
-  db.prepare('INSERT INTO credits (id, userId, balance, qrCode) VALUES (?, ?, ?, ?)').run(creditId2, spectatorId, 2.00, 'DEMO-CREDIT-LOW');
+  db.prepare('INSERT INTO credits (id, userId, balance, qrCode) VALUES (?, ?, ?, ?)').run(creditId2, spectatorId, 2.00, 'REVNTy1DUkVESVQtTE9X'); // Base64 de 'DEMO-CREDIT-LOW'
 
   console.log('  ✅ 2 crédits wallets créés (45.50€ et 2.00€)');
 

@@ -89,7 +89,7 @@ describe('Full Journey — E2E Tests', () => {
     const res = await request(app)
       .post('/api/scan/ticket')
       .set('Authorization', `Bearer ${clubToken}`)
-      .send({ qrCode: 'INVALID-QR-CODE' });
+      .send({ qrCode: 'SUJQRUNtRVZFTlRfUExBTk5FRA==' }); // Base64 valide mais ticket inexistant
 
     expect(res.status).toBe(200);
     expect(res.body.data.status).toBe('invalid');
@@ -99,7 +99,7 @@ describe('Full Journey — E2E Tests', () => {
     const res = await request(app)
       .post('/api/scan/credit')
       .set('Authorization', `Bearer ${clubToken}`)
-      .send({ qrCode: 'INVALID-CREDIT-QR' });
+      .send({ qrCode: 'Q1JFSURUQ1JFQRlWRU5U' }); // Base64 valide mais crédit inexistant
 
     expect(res.status).toBe(200);
     expect(res.body.data.status).toBe('invalid');

@@ -9,7 +9,7 @@
     "start": "concurrently --names \"BACK,FRONT\" --prefix \"{name}\" --prefix-colors \"bgBlue.bold.white,bgGreen.bold.white\" --kill-others-on-fail \"npm run start:backend\" \"npm run start:frontend\"",
     "start:frontend": "cd front && npx ng serve --host 0.0.0.0 --port 4200",
     "stop:frontend": "pkill -f 'ng.*4200' || pkill -f 'node.*4200' || lsof -ti :4200 | xargs kill -9 || true",
-    "start:backend": "cd server && node src/index.js",
+    "start:backend": "cd server && node -r dotenv/config src/index.js",
     "stop:backend": "pkill -f 'node.*3000' || lsof -ti :3000 | xargs kill -9 || true",
     "stop": "npm run stop:frontend && npm run stop:backend",
     "build:backend": "cd server && echo 'Backend: No build needed for Node.js'",
