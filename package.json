@@ -16,6 +16,7 @@
     "build:frontend": "cd front && npm run build --configuration production",
     "setup": "./scripts/setup.sh",
     "seed": "cd server && node src/database/seed.js",
+    "reset:scan": "cd server && node scripts/reset-scan.js",
     "docker:start": "./scripts/start-docker.sh",
     "docker:stop": "./scripts/stop-docker.sh",
     "docker:build": "./scripts/start-docker.sh --build-only",

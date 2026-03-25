@@ -97,6 +97,43 @@ cd docker && docker-compose down
 | Spectateur | `spectateur@sport-ix.com` | `Spectateur2024!` |
 | Club | `club@sport-ix.com` | `Club2024!` |
 
+> Connectez-vous avec le compte club pour accéder aux fonctions de scan.
+
+---
+
+## 🎯 Démo et Tests
+
+### Scénarios de démonstration
+
+Les pages de scan démo permettent de tester les fonctionnalités sans QR code réel :
+
+- **Demo Scan Billet** (`/demo/scan-billet`) : 4 scénarios de test
+  - ✅ Billet valide → Entrée autorisée
+  - ⚠️ Billet déjà scanné → Doublon détecté  
+  - ❌ Billet remboursé → Entrée refusée
+  - 🚫 QR invalide → Non reconnu
+
+- **Demo Scan Crédit** (`/demo/scan-credit`) : 4 scénarios de test
+  - ✅ Paiement réussi → Solde débité
+  - ⚠️ Solde insuffisant → Erreur de paiement
+  - 🚫 QR invalide → Non reconnu
+
+---
+
+## Réinitialisation des tickets ET crédits démo
+
+Après avoir scanné des tickets démo, leur statut change (`valid` → `scanned`). Pour réinitialiser :
+
+```bash
+# Réinitialiser uniquement les tickets ET crédits démo (recommandé)
+npm run reset:scan
+
+# Réinitialiser toute la base de données (complet)
+npm run seed
+```
+
+**Utilisation** : Lancez `npm run reset:scan` entre chaque session de test pour pouvoir rescanner les mêmes tickets ET crédits.
+
 ---
 
 ## Structure du projet
@@ -131,13 +168,10 @@ npm run test:front:e2e          # Tests E2E Playwright
 npm run test:front:vv           # Tests V&V frontend
 ```
 
-### Lint
+### Utilitaires
 ```bash
-cd front && npx ng lint         # Lint frontend Angular (ESLint)
-```
-
-### Tout lancer
-```bash
+npm run seed                    # Initialiser la base avec les données démo
+npm run reset:scan              # Réinitialiser les tickets ET crédits démo (pour tests répétés)
 npm run test:all                # Backend + Frontend (tous les tests)
 ```
 

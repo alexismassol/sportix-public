@@ -75,10 +75,10 @@ export class DemoScanBilletComponent {
   result: ScanResult | null = null;
 
   scenarios = [
-    { qrCode: 'DEMO-VALID-TICKET', label: 'Billet valide', description: 'Scan d\'un billet valide — entrée autorisée', icon: '✅' },
-    { qrCode: 'DEMO-SCANNED-TICKET', label: 'Déjà scanné', description: 'Le billet a déjà été scanné — doublon', icon: '⚠️' },
-    { qrCode: 'DEMO-REFUNDED-TICKET', label: 'Billet remboursé', description: 'Ce billet a été remboursé', icon: '❌' },
-    { qrCode: 'DEMO-INVALID-TICKET', label: 'QR invalide', description: 'QR code non reconnu dans le système', icon: '🚫' },
+    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', label: 'Billet valide', description: 'Scan d\'un billet valide — entrée autorisée', icon: '✅' }, // Base64 de 'DEMO-VALID-TICKET'
+    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', label: 'Déjà scanné', description: 'Le billet a déjà été scanné — doublon', icon: '⚠️' }, // Base64 de 'DEMO-SCANNED-TICKET'
+    { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', label: 'Billet remboursé', description: 'Ce billet a été remboursé', icon: '❌' }, // Base64 de 'DEMO-REFUNDED-TICKET'
+    { qrCode: 'SUJQRUNtRVZFTlRfUExBTk5FRA==', label: 'QR invalide', description: 'QR code non reconnu dans le système', icon: '🚫' }, // Base64 de 'INVALID-TICKET'
   ];
 
   private eventService = inject(EventService);
