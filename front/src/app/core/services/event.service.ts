@@ -42,7 +42,7 @@ export class EventService {
     return this.api.post<ApiResponse<ScanResult>>('/scan/ticket', { qrCode, eventId }).pipe(map(r => r.data));
   }
 
-  scanCredit(qrCode: string, amount?: number, eventId?: string): Observable<ScanResult> {
-    return this.api.post<ApiResponse<ScanResult>>('/scan/credit', { qrCode, amount, eventId }).pipe(map(r => r.data));
+  scanCredit(qrCode: string, debitAmount?: number, eventId?: string): Observable<ScanResult> {
+    return this.api.post<ApiResponse<ScanResult>>('/scan/credit', { qrCode, debitAmount, eventId }).pipe(map(r => r.data));
   }
 }
