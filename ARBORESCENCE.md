@@ -22,7 +22,8 @@ sportix-public/
 ├── docker/                            # Configuration Docker
 │   ├── Dockerfile.frontend            # Image Angular dev server
 │   ├── Dockerfile.backend             # Image Node.js backend + seed
-│   └── docker-compose.yml             # Orchestration front + back
+│   ├── docker-compose.yml             # Orchestration front + back
+│   └── .dockerignore                  # Fichiers exclus du build Docker
 │
 ├── server/                            # Backend Node.js (Express + SQLite)
 │   ├── package.json                   # Dépendances backend

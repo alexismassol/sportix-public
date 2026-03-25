@@ -39,6 +39,9 @@ Ce dépôt est une **version démo avec code source disponible** qui présente :
 git clone https://github.com/alexismassol/sportix-public.git
 cd sportix-public
 
+# Configurer les variables d'environnement
+cp server/.env.example server/.env
+
 # Installer toutes les dépendances (front + back)
 ./scripts/setup.sh
 # ou manuellement :
@@ -65,6 +68,9 @@ npm run start:frontend   # Frontend seul (port 4200)
 ### Avec Docker
 
 ```bash
+# Créer le fichier .env si pas encore fait
+cp server/.env.example server/.env
+
 # Démarrer les conteneurs Docker
 ./scripts/start-docker.sh
 # ou en arrière-plan :

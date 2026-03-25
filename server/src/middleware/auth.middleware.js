@@ -1,6 +1,10 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'sportix-demo-jwt-secret-2024';
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET obligatoire. Configurez-le dans votre fichier .env');
+}
 
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];

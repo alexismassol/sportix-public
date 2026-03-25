@@ -14,8 +14,30 @@ router.post('/ticket', authenticateToken, (req, res) => {
       return res.status(400).json({ success: false, error: 'QR code requis' });
     }
 
+    // Validation QR code (Base64 pattern)
+    const qrCodeRegex = /^[A-Za-z0-9+/=]+$/;
+    if (!qrCodeRegex.test(qrCode) || qrCode.length < 10) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'QR code invalide' 
+      });
+    }
+
     const db = getDatabase();
     const ticket = db.prepare('SELECT t.*, u.firstName, u.lastName FROM tickets t JOIN users u ON t.userId = u.id WHERE t.qrCode = ?').get(qrCode);
+
+    // Log structuré du scan
+    const scanLog = {
+      timestamp: new Date().toISOString(),
+      eventId: eventId || 'unknown',
+      scannerId: req.user.id,
+      scannerEmail: req.user.email,
+      type: 'ticket',
+      qrCode: qrCode.substring(0, 10) + '...', // Partiel pour sécurité
+      result: ticket ? 'found' : 'invalid',
+      ip: req.ip
+    };
+    console.log(JSON.stringify(scanLog));
 
     if (!ticket) {
       // Log the scan
@@ -90,16 +112,36 @@ router.post('/ticket', authenticateToken, (req, res) => {
 // POST /api/scan/credit
 router.post('/credit', authenticateToken, (req, res) => {
   try {
-    const { qrCode, amount, eventId } = req.body;
+    const { qrCode, debitAmount = 5.0, eventId } = req.body;
 
     if (!qrCode) {
       return res.status(400).json({ success: false, error: 'QR code requis' });
     }
 
-    const debitAmount = amount || 5.0;
+    // Validation QR code (Base64 pattern)
+    const qrCodeRegex = /^[A-Za-z0-9+/=]+$/;
+    if (!qrCodeRegex.test(qrCode) || qrCode.length < 10) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'QR code invalide' 
+      });
+    }
 
     const db = getDatabase();
     const credit = db.prepare('SELECT c.*, u.firstName, u.lastName FROM credits c JOIN users u ON c.userId = u.id WHERE c.qrCode = ?').get(qrCode);
+
+    // Log structuré du scan
+    const scanLog = {
+      timestamp: new Date().toISOString(),
+      eventId: eventId || 'unknown',
+      scannerId: req.user.id,
+      scannerEmail: req.user.email,
+      type: 'credit',
+      qrCode: qrCode.substring(0, 10) + '...', // Partiel pour sécurité
+      result: credit ? 'found' : 'invalid',
+      ip: req.ip
+    };
+    console.log(JSON.stringify(scanLog));
 
     if (!credit) {
       db.prepare('INSERT INTO scan_logs (id, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?)').run(

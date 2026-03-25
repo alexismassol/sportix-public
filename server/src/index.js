@@ -4,6 +4,11 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 import os from 'os';
 import authRoutes from './routes/auth.routes.js';
@@ -16,8 +21,16 @@ import { getDatabase } from './database/db.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limite par IP
+  message: { success: false, error: 'Trop de requêtes, réessayez plus tard' }
+});
+
 // Middleware
 app.use(helmet({ contentSecurityPolicy: false }));
+app.use(limiter); // Rate limiting sur toutes les routes
 
 // CORS configuration - autorise localhost et toutes les IPs du réseau local
 const isLocalNetwork = (origin) => {
@@ -48,6 +61,14 @@ app.use(compression());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
+
+// HTTP timeouts (30 secondes)
+app.use((req, res, next) => {
+  res.setTimeout(30000, () => {
+    res.status(408).json({ success: false, error: 'Request timeout' });
+  });
+  next();
+});
 
 // Initialize database
 getDatabase();

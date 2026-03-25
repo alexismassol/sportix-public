@@ -20,7 +20,7 @@
 |------|-------------|-------|
 | **Visiteur** | Utilisateur non connecté | Pages publiques (Home, About, Contact, FAQ, Events) |
 | **Spectateur** | Compte `spectateur@sport-ix.com` | Dashboard, Profil, Historique billets |
-| **Club** | Compte `club@sport-ix.com` | Dashboard, Scanner démo |
+| **Club** | Compte `club@sport-ix.com` | Dashboard club (`/club/dashboard`), Scanner démo |
 
 ### 2.2 Comptes démo
 
@@ -75,13 +75,20 @@
 
 ### 3.3 Pages authentifiées (spectateur)
 
-#### Dashboard (`/dashboard`)
+#### Dashboard spectateur (`/spectator/dashboard`)
 - Statistiques personnelles :
   - Nombre de billets achetés
   - Événements assistés
   - Crédits disponibles
   - Points de fidélité
 - Liste des prochains événements
+
+#### Dashboard club (`/club/dashboard`)
+- Statistiques du club :
+  - Événements organisés
+  - Billets vendus
+  - Revenus générés
+- Accès rapide au scanner démo
 
 #### Mon Profil (`/profile`)
 - Informations personnelles (prénom, nom, email)
@@ -168,14 +175,14 @@
 
 ### 6.2 Parcours spectateur
 1. Se connecte avec `spectateur@sport-ix.com`
-2. Accède au dashboard (stats personnelles)
+2. Accède au dashboard (`/spectator/dashboard`)
 3. Consulte son profil
 4. Navigue vers les événements
 5. Teste les pages démo scanner
 
 ### 6.3 Parcours club
 1. Se connecte avec `club@sport-ix.com`
-2. Accède au dashboard club
+2. Accède au dashboard club (`/club/dashboard`)
 3. Utilise le scanner de billets
 4. Consulte l'historique des scans
 
