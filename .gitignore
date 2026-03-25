@@ -45,6 +45,7 @@ server/coverage/
 test-results/
 front/test-results/
 playwright-report/
+front/e2e/.auth/
 
 # === OS ===
 Thumbs.db

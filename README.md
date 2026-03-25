@@ -185,6 +185,13 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 
 ---
 
+## Application compagnon
+
+Le scan des billets en situation réelle est assuré par l'application mobile Flutter :
+**[sportix-scanner-public](https://github.com/alexismassol/sportix-scanner-public)** — Scanner QR code connecté à ce backend.
+
+---
+
 ## Auteur
 
 **Alexis MASSOL**

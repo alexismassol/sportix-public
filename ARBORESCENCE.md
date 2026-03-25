@@ -16,8 +16,10 @@ sportix-public/
 │
 ├── scripts/                           # Scripts utilitaires
 │   ├── setup.sh                       # Installation complète (npm install front + back)
+│   ├── seed-database.sh               # Initialiser la base SQLite avec les données démo
 │   ├── start-docker.sh                # Lancer via Docker Compose
-│   └── seed-database.sh               # Initialiser la base SQLite avec les données démo
+│   ├── stop-docker.sh                 # Arrêter les conteneurs Docker
+│   └── clean-docker.sh                # Nettoyage images/volumes Docker
 │
 ├── docker/                            # Configuration Docker
 │   ├── Dockerfile.frontend            # Image Angular dev server
@@ -122,6 +124,7 @@ sportix-public/
     │           └── demo-scan-credit/
     │               └── demo-scan-credit.component.ts
     └── e2e/                           # Tests E2E & V&V (Playwright)
+        ├── global-setup.ts            # Setup global Playwright (auth state)
         ├── home.spec.ts
         ├── auth.spec.ts
         ├── navigation.spec.ts
