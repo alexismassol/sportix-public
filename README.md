@@ -12,7 +12,7 @@
 
 **Sport IX** (https://sport-ix.com) est une plateforme de billetterie sportive digitale permettant aux clubs sportifs de vendre des billets en ligne et aux spectateurs d'accéder aux événements via QR code sur mobile.
 
-Ce dépôt est une **version démo open-source** qui présente :
+Ce dépôt est une **version démo avec code source disponible** qui présente :
 - L'architecture frontend/backend découplée
 - Le système de design réutilisable (tokens CSS, mixins, animations)
 - L'authentification JWT
