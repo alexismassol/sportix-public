@@ -32,4 +32,6 @@ export interface ScanResult {
   previousBalance?: number;
   newBalance?: number;
   amount?: number;
+  currentBalance?: number;
+  requiredAmount?: number;
 }

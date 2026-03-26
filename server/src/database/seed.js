@@ -68,7 +68,7 @@ async function seed() {
     { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', status: 'scanned', seatInfo: 'Tribune B — Rang 3, Place 8', eventIndex: 1 }, // Base64 de 'DEMO-SCANNED-TICKET'
     { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', status: 'refunded', seatInfo: 'Tribune C — Rang 10, Place 22', eventIndex: 2 }, // Base64 de 'DEMO-REFUNDED-TICKET'
     { qrCode: 'U1BPUlRJWC1USUNLRVQtVkFMSUQtMg==', status: 'valid', seatInfo: 'Pelouse — Entrée libre', eventIndex: 0 }, // Base64 de 'SPORTIX-TICKET-VALID-2'
-    { qrCode: 'SPORTIX-TICKET-VIP', status: 'valid', seatInfo: 'VIP — Loge 4', eventIndex: 1 },
+    { qrCode: 'U1BPUlRJWC1USUNLRVQtVklQ', status: 'valid', seatInfo: 'VIP — Loge 4', eventIndex: 1 }, // Base64 de 'SPORTIX-TICKET-VIP'
   ];
 
   for (const t of demoTickets) {

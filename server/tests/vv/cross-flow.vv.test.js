@@ -9,10 +9,12 @@
  * VV-REQ-01: Auth flow must produce valid JWT usable on all protected routes
  * VV-REQ-02: Ticket scan must update ticket status and create scan log
  * VV-REQ-03: Credit scan must debit balance atomically and create scan log
- * VV-REQ-04: Double-scan of same ticket must return already_scanned
- * VV-REQ-05: Insufficient credit must not debit and must return error
+ * VV-REQ-04: Double-scan of same ticket must return already_scanned + create scan log
+ * VV-REQ-05: Insufficient credit must not debit and must return error + create scan log
  * VV-REQ-06: Stats endpoint must reflect real data from database
  * VV-REQ-07: Unauthenticated access must be rejected on all protected routes
+ * VV-REQ-08: Non-club roles must receive 403 on scan endpoints
+ * VV-REQ-09: Invalid debitAmount must be rejected with 400
  */
 import { describe, it, expect, afterAll } from '@jest/globals';
 import app from '../../src/index.js';
@@ -175,10 +177,15 @@ describe('V&V — Cross-Flow Validation', () => {
   });
 
   // =========================================================================
-  // VV-REQ-04: Double-scan returns already_scanned
+  // VV-REQ-04: Double-scan returns already_scanned + creates scan_log
   // =========================================================================
-  describe('VV-REQ-04: Double Scan → Rejection', () => {
+  describe('VV-REQ-04: Double Scan → Rejection + Scan Log', () => {
     it('should reject a ticket that was already scanned', async () => {
+      const db = getDatabase();
+      const countBefore = db.prepare(
+        "SELECT COUNT(*) as count FROM scan_logs WHERE type = 'ticket' AND result = 'already_scanned'"
+      ).get().count;
+
       const res = await request(app)
         .post('/api/scan/ticket')
         .set('Authorization', `Bearer ${clubToken}`)
@@ -187,16 +194,25 @@ describe('V&V — Cross-Flow Validation', () => {
       expect(res.status).toBe(200);
       expect(res.body.data.status).toBe('already_scanned');
       expect(res.body.data.holderName).toBe('Jean Dupont');
+
+      // Verify scan_log was created for already_scanned
+      const countAfter = db.prepare(
+        "SELECT COUNT(*) as count FROM scan_logs WHERE type = 'ticket' AND result = 'already_scanned'"
+      ).get().count;
+      expect(countAfter).toBe(countBefore + 1);
     });
   });
 
   // =========================================================================
-  // VV-REQ-05: Insufficient credit → no debit + error
+  // VV-REQ-05: Insufficient credit → no debit + error + creates scan_log
   // =========================================================================
-  describe('VV-REQ-05: Insufficient Credit → No Debit', () => {
-    it('should reject credit scan when balance is too low', async () => {
+  describe('VV-REQ-05: Insufficient Credit → No Debit + Scan Log', () => {
+    it('should reject credit scan when balance is too low and create a scan_log', async () => {
       const db = getDatabase();
       const before = db.prepare("SELECT balance FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtTE9X'").get();
+      const countBefore = db.prepare(
+        "SELECT COUNT(*) as count FROM scan_logs WHERE type = 'credit' AND result = 'insufficient'"
+      ).get().count;
 
       const res = await request(app)
         .post('/api/scan/credit')
@@ -209,6 +225,12 @@ describe('V&V — Cross-Flow Validation', () => {
       // Verify balance unchanged
       const after = db.prepare("SELECT balance FROM credits WHERE qrCode = 'REVNTy1DUkVESVQtTE9X'").get();
       expect(after.balance).toBe(before.balance);
+
+      // Verify scan_log was created for insufficient
+      const countAfter = db.prepare(
+        "SELECT COUNT(*) as count FROM scan_logs WHERE type = 'credit' AND result = 'insufficient'"
+      ).get().count;
+      expect(countAfter).toBe(countBefore + 1);
     });
   });
 
@@ -233,6 +255,76 @@ describe('V&V — Cross-Flow Validation', () => {
 
       const res = await request(app).get('/api/events');
       expect(res.body.data.length).toBe(dbCount);
+    });
+  });
+
+  // =========================================================================
+  // VV-REQ-08: Non-club roles must receive 403 on scan endpoints
+  // =========================================================================
+  describe('VV-REQ-08: Role Guard on Scan Endpoints', () => {
+    it('should return 403 when spectator token is used on POST /scan/ticket', async () => {
+      const res = await request(app)
+        .post('/api/scan/ticket')
+        .set('Authorization', `Bearer ${spectatorToken}`)
+        .send({ qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=' });
+
+      expect(res.status).toBe(403);
+      expect(res.body.success).toBe(false);
+    });
+
+    it('should return 403 when spectator token is used on POST /scan/credit', async () => {
+      const res = await request(app)
+        .post('/api/scan/credit')
+        .set('Authorization', `Bearer ${spectatorToken}`)
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: 5 });
+
+      expect(res.status).toBe(403);
+      expect(res.body.success).toBe(false);
+    });
+  });
+
+  // =========================================================================
+  // VV-REQ-09: Invalid debitAmount must be rejected with 400
+  // =========================================================================
+  describe('VV-REQ-09: debitAmount Validation on /scan/credit', () => {
+    it('should return 400 when debitAmount is 0', async () => {
+      const res = await request(app)
+        .post('/api/scan/credit')
+        .set('Authorization', `Bearer ${clubToken}`)
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: 0 });
+
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+    });
+
+    it('should return 400 when debitAmount is negative (-5)', async () => {
+      const res = await request(app)
+        .post('/api/scan/credit')
+        .set('Authorization', `Bearer ${clubToken}`)
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: -5 });
+
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+    });
+
+    it('should return 400 when debitAmount is a non-numeric string ("abc")', async () => {
+      const res = await request(app)
+        .post('/api/scan/credit')
+        .set('Authorization', `Bearer ${clubToken}`)
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: 'abc' });
+
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+    });
+
+    it('should return 400 when debitAmount exceeds 9999', async () => {
+      const res = await request(app)
+        .post('/api/scan/credit')
+        .set('Authorization', `Bearer ${clubToken}`)
+        .send({ qrCode: 'REVNTy1DUkVESVQtT0s=', debitAmount: 10000 });
+
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
     });
   });
 

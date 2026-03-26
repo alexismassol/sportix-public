@@ -53,17 +53,13 @@ describe('Full Journey — E2E Tests', () => {
     spectatorToken = res.body.data.token;
   });
 
-  it('Step 5: Register as club', async () => {
+  it('Step 5: Login as seeded club account', async () => {
     const res = await request(app)
-      .post('/api/auth/register')
-      .send({
-        email: `e2e-club-${UID}@test.com`,
-        password: 'E2ETest2024!',
-        firstName: 'E2E',
-        lastName: 'Club'
-      });
+      .post('/api/auth/login')
+      .send({ email: 'club@sport-ix.com', password: 'Club2024!' });
 
-    expect(res.status).toBe(201);
+    expect(res.status).toBe(200);
+    expect(res.body.data.user.role).toBe('club');
     clubToken = res.body.data.token;
   });
 

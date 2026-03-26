@@ -8,42 +8,28 @@ const router = Router();
 // POST /api/scan/ticket
 router.post('/ticket', authenticateToken, (req, res) => {
   try {
+    if (req.user.role !== 'club') {
+      return res.status(403).json({ success: false, error: 'Accès réservé aux clubs' });
+    }
+
     const { qrCode, eventId } = req.body;
 
-    if (!qrCode) {
+    if (!qrCode || typeof qrCode !== 'string') {
       return res.status(400).json({ success: false, error: 'QR code requis' });
     }
 
-    // Validation QR code (Base64 pattern ou demo codes)
-    const qrCodeRegex = /^[A-Za-z0-9+/=]+$/;
-    const demoQrCodes = ['DEMO-VALID-TICKET', 'DEMO-SCANNED-TICKET', 'DEMO-REFUNDED-TICKET', 'SPORTIX-TICKET-VALID-2', 'DEMO-CREDIT-OK', 'DEMO-CREDIT-LOW'];
-    
-    // Accepter Base64 OU codes démo pour tests
-    if (!qrCodeRegex.test(qrCode) && !demoQrCodes.includes(qrCode)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'QR code invalide' 
-      });
+    // Validation QR code (Base64 pattern uniquement)
+    const qrCodeRegex = /^[A-Za-z0-9+/=]{4,500}$/;
+    if (!qrCodeRegex.test(qrCode)) {
+      return res.status(400).json({ success: false, error: 'QR code invalide' });
     }
 
     const db = getDatabase();
     const ticket = db.prepare('SELECT t.*, u.firstName, u.lastName FROM tickets t JOIN users u ON t.userId = u.id WHERE t.qrCode = ?').get(qrCode);
 
-    // Log structuré du scan
-    const scanLog = {
-      timestamp: new Date().toISOString(),
-      eventId: eventId || 'unknown',
-      scannerId: req.user.id,
-      scannerEmail: req.user.email,
-      type: 'ticket',
-      qrCode: qrCode.substring(0, 10) + '...', // Partiel pour sécurité
-      result: ticket ? 'found' : 'invalid',
-      ip: req.ip
-    };
-    console.log(JSON.stringify(scanLog));
+    console.log(JSON.stringify({ timestamp: new Date().toISOString(), type: 'ticket', result: ticket ? ticket.status : 'invalid' }));
 
     if (!ticket) {
-      // Log the scan
       db.prepare('INSERT INTO scan_logs (id, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?)').run(
         uuidv4(), eventId || 'unknown', req.user.id, 'ticket', 'invalid'
       );
@@ -74,6 +60,10 @@ router.post('/ticket', authenticateToken, (req, res) => {
     }
 
     if (ticket.status === 'scanned') {
+      db.prepare('INSERT INTO scan_logs (id, ticketId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
+        uuidv4(), ticket.id, ticket.eventId, req.user.id, 'ticket', 'already_scanned'
+      );
+
       return res.json({
         success: true,
         data: {
@@ -87,13 +77,15 @@ router.post('/ticket', authenticateToken, (req, res) => {
       });
     }
 
-    // Valid ticket — mark as scanned
+    // Valid ticket — mark as scanned (atomic)
     const now = new Date().toISOString();
-    db.prepare('UPDATE tickets SET status = ?, scannedAt = ? WHERE id = ?').run('scanned', now, ticket.id);
-
-    db.prepare('INSERT INTO scan_logs (id, ticketId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
-      uuidv4(), ticket.id, ticket.eventId, req.user.id, 'ticket', 'valid'
-    );
+    const scanTicket = db.transaction(() => {
+      db.prepare('UPDATE tickets SET status = ?, scannedAt = ? WHERE id = ?').run('scanned', now, ticket.id);
+      db.prepare('INSERT INTO scan_logs (id, ticketId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
+        uuidv4(), ticket.id, ticket.eventId, req.user.id, 'ticket', 'valid'
+      );
+    });
+    scanTicket();
 
     res.json({
       success: true,
@@ -115,39 +107,31 @@ router.post('/ticket', authenticateToken, (req, res) => {
 // POST /api/scan/credit
 router.post('/credit', authenticateToken, (req, res) => {
   try {
+    if (req.user.role !== 'club') {
+      return res.status(403).json({ success: false, error: 'Accès réservé aux clubs' });
+    }
+
     const { qrCode, debitAmount = 5.0, eventId } = req.body;
 
-    if (!qrCode) {
+    if (!qrCode || typeof qrCode !== 'string') {
       return res.status(400).json({ success: false, error: 'QR code requis' });
     }
 
-    // Validation QR code (Base64 pattern ou demo codes)
-    const qrCodeRegex = /^[A-Za-z0-9+/=]+$/;
-    const demoQrCodes = ['DEMO-VALID-TICKET', 'DEMO-SCANNED-TICKET', 'DEMO-REFUNDED-TICKET', 'SPORTIX-TICKET-VALID-2', 'DEMO-CREDIT-OK', 'DEMO-CREDIT-LOW'];
-    
-    // Accepter Base64 OU codes démo pour tests
-    if (!qrCodeRegex.test(qrCode) && !demoQrCodes.includes(qrCode)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'QR code invalide' 
-      });
+    const parsedAmount = parseFloat(debitAmount);
+    if (isNaN(parsedAmount) || parsedAmount <= 0 || parsedAmount > 9999) {
+      return res.status(400).json({ success: false, error: 'Montant invalide' });
+    }
+
+    // Validation QR code (Base64 pattern uniquement)
+    const qrCodeRegex = /^[A-Za-z0-9+/=]{4,500}$/;
+    if (!qrCodeRegex.test(qrCode)) {
+      return res.status(400).json({ success: false, error: 'QR code invalide' });
     }
 
     const db = getDatabase();
     const credit = db.prepare('SELECT c.*, u.firstName, u.lastName FROM credits c JOIN users u ON c.userId = u.id WHERE c.qrCode = ?').get(qrCode);
 
-    // Log structuré du scan
-    const scanLog = {
-      timestamp: new Date().toISOString(),
-      eventId: eventId || 'unknown',
-      scannerId: req.user.id,
-      scannerEmail: req.user.email,
-      type: 'credit',
-      qrCode: qrCode.substring(0, 10) + '...', // Partiel pour sécurité
-      result: credit ? 'found' : 'invalid',
-      ip: req.ip
-    };
-    console.log(JSON.stringify(scanLog));
+    console.log(JSON.stringify({ timestamp: new Date().toISOString(), type: 'credit', result: credit ? 'found' : 'invalid' }));
 
     if (!credit) {
       db.prepare('INSERT INTO scan_logs (id, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?)').run(
@@ -163,35 +147,43 @@ router.post('/credit', authenticateToken, (req, res) => {
       });
     }
 
-    if (credit.balance < debitAmount) {
+    if (credit.balance < parsedAmount) {
+      db.prepare('INSERT INTO scan_logs (id, creditId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
+        uuidv4(), credit.id, eventId || 'unknown', req.user.id, 'credit', 'insufficient'
+      );
+
       return res.json({
         success: true,
         data: {
           status: 'insufficient',
           message: 'Solde insuffisant',
           currentBalance: credit.balance,
-          requiredAmount: debitAmount,
+          requiredAmount: parsedAmount,
           holderName: `${credit.firstName} ${credit.lastName}`
         }
       });
     }
 
-    // Debit
-    const newBalance = credit.balance - debitAmount;
-    db.prepare('UPDATE credits SET balance = ? WHERE id = ?').run(newBalance, credit.id);
+    // Debit (atomic transaction)
+    const previousBalance = credit.balance;
+    const newBalance = Math.round((previousBalance - parsedAmount) * 100) / 100;
 
-    db.prepare('INSERT INTO scan_logs (id, creditId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
-      uuidv4(), credit.id, eventId || 'unknown', req.user.id, 'credit', 'valid'
-    );
+    const debitCredit = db.transaction(() => {
+      db.prepare('UPDATE credits SET balance = ? WHERE id = ?').run(newBalance, credit.id);
+      db.prepare('INSERT INTO scan_logs (id, creditId, eventId, scannerId, type, result) VALUES (?, ?, ?, ?, ?, ?)').run(
+        uuidv4(), credit.id, eventId || 'unknown', req.user.id, 'credit', 'valid'
+      );
+    });
+    debitCredit();
 
     res.json({
       success: true,
       data: {
         status: 'valid',
-        message: `${debitAmount.toFixed(2)}€ débités avec succès`,
-        previousBalance: credit.balance,
+        message: `${parsedAmount.toFixed(2)}€ débités avec succès`,
+        previousBalance,
         newBalance,
-        amount: debitAmount,
+        amount: parsedAmount,
         holderName: `${credit.firstName} ${credit.lastName}`
       }
     });

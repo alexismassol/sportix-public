@@ -13,8 +13,9 @@ const db = getDatabase();
 
 // Reset les tickets démo à 'valid'
 const demoTickets = [
-  'REVNTy1WQUxJRC1USUNLRVQ=',  // DEMO-VALID-TICKET
+  'REVNTy1WQUxJRC1USUNLRVQ=',       // DEMO-VALID-TICKET
   'U1BPUlRJWC1USUNLRVQtVkFMSUQtMg==', // SPORTIX-TICKET-VALID-2
+  'U1BPUlRJWC1USUNLRVQtVklQ',       // SPORTIX-TICKET-VIP
 ];
 
 try {

@@ -109,12 +109,12 @@ export class DemoScanCreditComponent {
   }
 
   private getMockResult(qrCode: string, amount: number): ScanResult {
-    if (qrCode === 'DEMO-CREDIT-INVALID') {
-      return { status: 'invalid', message: 'QR code non reconnu' };
+    if (qrCode === 'REVNTy1DUkVESVQtTE9X') {
+      return { status: 'insufficient', message: 'Solde insuffisant', holderName: 'Jean Dupont', currentBalance: 2.00, requiredAmount: amount };
     }
-    if (qrCode === 'DEMO-CREDIT-LOW') {
-      return { status: 'insufficient', message: 'Solde insuffisant', holderName: 'Jean Dupont', previousBalance: 45.50, newBalance: 45.50, amount };
+    if (qrCode === 'REVNTy1DUkVESVQtT0s=') {
+      return { status: 'valid', message: `${amount.toFixed(2)}€ débités avec succès`, holderName: 'Jean Dupont', previousBalance: 45.50, newBalance: 45.50 - amount, amount };
     }
-    return { status: 'valid', message: `${amount.toFixed(2)}€ débités avec succès`, holderName: 'Jean Dupont', previousBalance: 45.50, newBalance: 45.50 - amount, amount };
+    return { status: 'invalid', message: 'QR code non reconnu' };
   }
 }

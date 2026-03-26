@@ -60,7 +60,8 @@ app.use(cors({
 app.use(compression());
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(express.json());
+app.set('trust proxy', 1);
+app.use(express.json({ limit: '100kb' }));
 
 // HTTP timeouts (30 secondes)
 app.use((req, res, next) => {
