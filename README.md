@@ -1,5 +1,12 @@
 # Sportix
 
+![Angular](https://img.shields.io/badge/Angular-21.2.5-DD0031?logo=angular)
+![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker)
+![Tests](https://img.shields.io/badge/Tests-Jest%20%2B%20Playwright-green)
+![License](https://img.shields.io/badge/License-Proprietary-red)
+
 **Projet démo** de la plateforme de billetterie sportive **Sport IX** — développé par **Alexis MASSOL**.
 
 > Application web complète : Angular 21.2.5 (frontend) + Node.js 22 (backend) + SQLite (base de données).
