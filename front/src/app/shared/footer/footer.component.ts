@@ -48,7 +48,7 @@ import { RouterModule } from '@angular/router';
         <!-- Bottom bar -->
         <div class="pt-4 flex flex-col md:flex-row items-center justify-between gap-2" style="border-top: 1px solid rgba(255,255,255,0.06);">
           <p class="text-xs sm:text-sm" style="color: rgba(255,255,255,0.4);">
-            © {{ currentYear }} Alexis MASSOL — Tous droits réservés
+            © {{ currentYear }} Alexis MASSOL - Tous droits réservés
           </p>
           <p class="text-xs sm:text-sm flex items-center gap-1.5" style="color: rgba(255,255,255,0.4);">
             Fait avec <span class="inline-block" style="animation: heartBeat 2s ease-in-out infinite;">❤️</span> aux Antilles

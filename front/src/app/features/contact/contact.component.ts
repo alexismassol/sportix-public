@@ -43,7 +43,7 @@ import { FormsModule } from '@angular/forms';
 
           @if (sent) {
             <div class="mt-6 p-4 rounded-xl text-center text-sm" style="background: rgba(0,230,118,0.1); border: 1px solid rgba(0,230,118,0.2); color: var(--success);">
-              Merci pour votre message ! (Mode démo — aucun email envoyé)
+              Merci pour votre message ! (Mode démo - aucun email envoyé)
             </div>
           }
         </div>

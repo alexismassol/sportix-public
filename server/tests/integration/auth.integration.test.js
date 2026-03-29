@@ -4,7 +4,7 @@ import app from '../../src/index.js';
 
 const UID = Date.now();
 
-describe('Auth — Integration Tests', () => {
+describe('Auth - Integration Tests', () => {
   let server;
 
   beforeAll((done) => {

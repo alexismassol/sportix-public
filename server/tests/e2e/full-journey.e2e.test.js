@@ -4,7 +4,7 @@ import app from '../../src/index.js';
 
 const UID = Date.now();
 
-describe('Full Journey — E2E Tests', () => {
+describe('Full Journey - E2E Tests', () => {
   let server;
   let spectatorToken;
   let clubToken;

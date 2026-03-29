@@ -4,7 +4,7 @@ import app from '../../src/index.js';
 
 const UID = Date.now();
 
-describe('User — Integration Tests', () => {
+describe('User - Integration Tests', () => {
   let server;
   let authToken;
 

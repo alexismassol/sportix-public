@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════
-# Seed Database Script — Sportix
+# Seed Database Script - Sportix
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Usage: ./scripts/seed-database.sh
@@ -35,7 +35,7 @@
 
 set -e
 
-echo "🗄️  Sportix — Seed Database"
+echo "🗄️  Sportix - Seed Database"
 echo "========================================="
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -5,7 +5,7 @@ import { getTestDatabase } from '../../src/database/db.js';
 
 const JWT_SECRET = 'sportix-demo-jwt-secret-2024';
 
-describe('Auth — Unit Tests', () => {
+describe('Auth - Unit Tests', () => {
   let db;
 
   beforeAll(async () => {

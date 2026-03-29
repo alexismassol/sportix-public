@@ -7,7 +7,7 @@
 ![Tests](https://img.shields.io/badge/Tests-Jest%20%2B%20Playwright-green)
 ![License](https://img.shields.io/badge/License-Proprietary-red)
 
-**Projet démo** de la plateforme de billetterie sportive **Sport IX** — développé par **Alexis MASSOL**.
+**Projet démo** de la plateforme de billetterie sportive **Sport IX**.
 
 > Application web complète : Angular 21.2.5 (frontend) + Node.js 22 (backend) + SQLite (base de données).
 
@@ -229,15 +229,13 @@ Voir `front/src/styles/tokens.scss`, `mixins.scss` et `animations.scss`.
 ## Application compagnon
 
 Le scan des billets en situation réelle est assuré par l'application mobile Flutter :
-**[sportix-scanner-public](https://github.com/alexismassol/sportix-scanner-public)** — Scanner QR code connecté à ce backend.
+**[sportix-scanner-public](https://github.com/alexismassol/sportix-scanner-public)** - Scanner QR code connecté à ce backend.
 
 ---
 
 ## Auteur
 
-**Alexis MASSOL**
-- Développeur Full Stack
-- Créateur de la plateforme Sport IX
+**Alexis MASSOL** - Senior Software Engineer · Embedded Systems & Cloud Platforms
 
 ---
 

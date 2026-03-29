@@ -1,13 +1,13 @@
 /**
- * V&V (Validation & Verification) — Frontend Cross-Flow Tests
+ * V&V (Validation & Verification) - Frontend Cross-Flow Tests
  *
  * Validates that the frontend correctly implements the functional spec:
  * VV-FRONT-01: All pages render without errors
- * VV-FRONT-02: Navigation consistency — all links lead to correct routes
- * VV-FRONT-03: Auth flow — login → dashboard → protected pages → logout
+ * VV-FRONT-02: Navigation consistency - all links lead to correct routes
+ * VV-FRONT-03: Auth flow - login → dashboard → protected pages → logout
  * VV-FRONT-04: Demo scan pages display correct scenarios
  * VV-FRONT-05: Responsive layout works on mobile and desktop viewports
- * VV-FRONT-06: Error handling — graceful degradation when API is down
+ * VV-FRONT-06: Error handling - graceful degradation when API is down
  */
 import { test, expect } from '@playwright/test';
 
@@ -159,7 +159,7 @@ test.describe('VV-FRONT-06: Error Handling', () => {
     await page.goto('/nonexistent-page-xyz');
     await page.waitForLoadState('networkidle');
 
-    // Should not crash — page should still render
+    // Should not crash - page should still render
     const body = await page.textContent('body');
     expect(body).toBeTruthy();
   });

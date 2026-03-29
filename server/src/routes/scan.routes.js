@@ -38,7 +38,7 @@ router.post('/ticket', authenticateToken, (req, res) => {
         success: true,
         data: {
           status: 'invalid',
-          message: 'QR code non reconnu — billet invalide'
+          message: 'QR code non reconnu - billet invalide'
         }
       });
     }
@@ -52,7 +52,7 @@ router.post('/ticket', authenticateToken, (req, res) => {
         success: true,
         data: {
           status: 'refunded',
-          message: 'Ce billet a été remboursé — entrée refusée',
+          message: 'Ce billet a été remboursé - entrée refusée',
           ticketId: ticket.id,
           holderName: `${ticket.firstName} ${ticket.lastName}`
         }
@@ -77,7 +77,7 @@ router.post('/ticket', authenticateToken, (req, res) => {
       });
     }
 
-    // Valid ticket — mark as scanned (atomic)
+    // Valid ticket - mark as scanned (atomic)
     const now = new Date().toISOString();
     const scanTicket = db.transaction(() => {
       db.prepare('UPDATE tickets SET status = ?, scannedAt = ? WHERE id = ?').run('scanned', now, ticket.id);
@@ -91,7 +91,7 @@ router.post('/ticket', authenticateToken, (req, res) => {
       success: true,
       data: {
         status: 'valid',
-        message: 'Entrée autorisée — bienvenue !',
+        message: 'Entrée autorisée - bienvenue !',
         ticketId: ticket.id,
         holderName: `${ticket.firstName} ${ticket.lastName}`,
         seatInfo: ticket.seatInfo,

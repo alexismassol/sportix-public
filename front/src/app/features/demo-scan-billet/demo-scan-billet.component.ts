@@ -75,8 +75,8 @@ export class DemoScanBilletComponent {
   result: ScanResult | null = null;
 
   scenarios = [
-    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', label: 'Billet valide', description: 'Scan d\'un billet valide — entrée autorisée', icon: '✅' }, // Base64 de 'DEMO-VALID-TICKET'
-    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', label: 'Déjà scanné', description: 'Le billet a déjà été scanné — doublon', icon: '⚠️' }, // Base64 de 'DEMO-SCANNED-TICKET'
+    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', label: 'Billet valide', description: 'Scan d\'un billet valide - entrée autorisée', icon: '✅' }, // Base64 de 'DEMO-VALID-TICKET'
+    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', label: 'Déjà scanné', description: 'Le billet a déjà été scanné - doublon', icon: '⚠️' }, // Base64 de 'DEMO-SCANNED-TICKET'
     { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', label: 'Billet remboursé', description: 'Ce billet a été remboursé', icon: '❌' }, // Base64 de 'DEMO-REFUNDED-TICKET'
     { qrCode: 'SUJQRUNtRVZFTlRfUExBTk5FRA==', label: 'QR invalide', description: 'QR code non reconnu dans le système', icon: '🚫' }, // Base64 de 'INVALID-TICKET'
   ];
@@ -105,11 +105,11 @@ export class DemoScanBilletComponent {
 
   private getMockResult(qrCode: string): ScanResult {
     const results: Record<string, ScanResult> = {
-      'REVNTy1WQUxJRC1USUNLRVQ=': { status: 'valid', message: 'Entrée autorisée — bienvenue !', holderName: 'Jean Dupont', seatInfo: 'Tribune A — Rang 5, Place 12', scannedAt: new Date().toISOString() },
-      'REVNTy1TQ0FOTkVELVRJQ0tFVA==': { status: 'already_scanned', message: 'Ce billet a déjà été scanné à 19:30', holderName: 'Jean Dupont', seatInfo: 'Tribune B — Rang 3, Place 8', scannedAt: '2026-04-15T19:30:00Z' },
-      'REVNTy1SRUZVTkRFRC1USUNLRVQ=': { status: 'refunded', message: 'Ce billet a été remboursé — entrée refusée', holderName: 'Jean Dupont' },
+      'REVNTy1WQUxJRC1USUNLRVQ=': { status: 'valid', message: 'Entrée autorisée - bienvenue !', holderName: 'Jean Dupont', seatInfo: 'Tribune A - Rang 5, Place 12', scannedAt: new Date().toISOString() },
+      'REVNTy1TQ0FOTkVELVRJQ0tFVA==': { status: 'already_scanned', message: 'Ce billet a déjà été scanné à 19:30', holderName: 'Jean Dupont', seatInfo: 'Tribune B - Rang 3, Place 8', scannedAt: '2026-04-15T19:30:00Z' },
+      'REVNTy1SRUZVTkRFRC1USUNLRVQ=': { status: 'refunded', message: 'Ce billet a été remboursé - entrée refusée', holderName: 'Jean Dupont' },
     };
-    return results[qrCode] || { status: 'invalid', message: 'QR code non reconnu — billet invalide' };
+    return results[qrCode] || { status: 'invalid', message: 'QR code non reconnu - billet invalide' };
   }
 
   getResultBg(): string {

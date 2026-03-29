@@ -36,9 +36,9 @@ async function seed() {
   // === Events ===
   const events = [
     { title: 'RC Toulon vs Stade Français', sportType: 'Rugby', date: '2026-04-15T20:00:00Z', location: 'Stade Mayol, Toulon', clubName: 'RC Toulon', ticketsSold: 12800, maxCapacity: 15000, price: 25, status: 'upcoming' },
-    { title: 'ASSE vs OL — Derby', sportType: 'Football', date: '2026-04-20T21:00:00Z', location: 'Geoffroy-Guichard, Saint-Étienne', clubName: 'AS Saint-Étienne', ticketsSold: 38200, maxCapacity: 42000, price: 35, status: 'upcoming' },
+    { title: 'ASSE vs OL - Derby', sportType: 'Football', date: '2026-04-20T21:00:00Z', location: 'Geoffroy-Guichard, Saint-Étienne', clubName: 'AS Saint-Étienne', ticketsSold: 38200, maxCapacity: 42000, price: 35, status: 'upcoming' },
     { title: 'PSG Handball vs Montpellier', sportType: 'Handball', date: '2026-04-22T20:30:00Z', location: 'Stade Pierre de Coubertin, Paris', clubName: 'PSG Handball', ticketsSold: 3400, maxCapacity: 4500, price: 15, status: 'upcoming' },
-    { title: 'Étoile de Bessèges — Étape 3', sportType: 'Cyclisme', date: '2026-04-25T14:00:00Z', location: 'Bessèges', clubName: 'Organisation Bessèges', ticketsSold: 800, maxCapacity: 2000, price: 10, status: 'upcoming' },
+    { title: 'Étoile de Bessèges - Étape 3', sportType: 'Cyclisme', date: '2026-04-25T14:00:00Z', location: 'Bessèges', clubName: 'Organisation Bessèges', ticketsSold: 800, maxCapacity: 2000, price: 10, status: 'upcoming' },
     { title: 'Tournoi Open de Tennis', sportType: 'Tennis', date: '2026-04-28T10:00:00Z', location: 'Roland Garros, Paris', clubName: 'FFT', ticketsSold: 8900, maxCapacity: 15000, price: 45, status: 'upcoming' },
     { title: 'Meeting d\'Athlétisme', sportType: 'Athlétisme', date: '2026-05-01T15:00:00Z', location: 'Stade Charléty, Paris', clubName: 'Stade Charléty', ticketsSold: 4200, maxCapacity: 5000, price: 20, status: 'upcoming' },
     { title: 'France vs Angleterre', sportType: 'Rugby', date: '2026-05-05T21:00:00Z', location: 'Stade de France, Paris', clubName: 'FFR', ticketsSold: 78500, maxCapacity: 80000, price: 55, status: 'upcoming' },
@@ -64,11 +64,11 @@ async function seed() {
   );
 
   const demoTickets = [
-    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', status: 'valid', seatInfo: 'Tribune A — Rang 5, Place 12', eventIndex: 0 }, // Base64 de 'DEMO-VALID-TICKET'
-    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', status: 'scanned', seatInfo: 'Tribune B — Rang 3, Place 8', eventIndex: 1 }, // Base64 de 'DEMO-SCANNED-TICKET'
-    { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', status: 'refunded', seatInfo: 'Tribune C — Rang 10, Place 22', eventIndex: 2 }, // Base64 de 'DEMO-REFUNDED-TICKET'
-    { qrCode: 'U1BPUlRJWC1USUNLRVQtVkFMSUQtMg==', status: 'valid', seatInfo: 'Pelouse — Entrée libre', eventIndex: 0 }, // Base64 de 'SPORTIX-TICKET-VALID-2'
-    { qrCode: 'U1BPUlRJWC1USUNLRVQtVklQ', status: 'valid', seatInfo: 'VIP — Loge 4', eventIndex: 1 }, // Base64 de 'SPORTIX-TICKET-VIP'
+    { qrCode: 'REVNTy1WQUxJRC1USUNLRVQ=', status: 'valid', seatInfo: 'Tribune A - Rang 5, Place 12', eventIndex: 0 }, // Base64 de 'DEMO-VALID-TICKET'
+    { qrCode: 'REVNTy1TQ0FOTkVELVRJQ0tFVA==', status: 'scanned', seatInfo: 'Tribune B - Rang 3, Place 8', eventIndex: 1 }, // Base64 de 'DEMO-SCANNED-TICKET'
+    { qrCode: 'REVNTy1SRUZVTkRFRC1USUNLRVQ=', status: 'refunded', seatInfo: 'Tribune C - Rang 10, Place 22', eventIndex: 2 }, // Base64 de 'DEMO-REFUNDED-TICKET'
+    { qrCode: 'U1BPUlRJWC1USUNLRVQtVkFMSUQtMg==', status: 'valid', seatInfo: 'Pelouse - Entrée libre', eventIndex: 0 }, // Base64 de 'SPORTIX-TICKET-VALID-2'
+    { qrCode: 'U1BPUlRJWC1USUNLRVQtVklQ', status: 'valid', seatInfo: 'VIP - Loge 4', eventIndex: 1 }, // Base64 de 'SPORTIX-TICKET-VIP'
   ];
 
   for (const t of demoTickets) {

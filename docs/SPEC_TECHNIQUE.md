@@ -1,4 +1,4 @@
-# Spécification Technique — Sportix
+# Spécification Technique - Sportix
 
 **Version** : 1.0.0
 **Auteur** : Alexis MASSOL

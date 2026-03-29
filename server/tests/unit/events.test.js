@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { getTestDatabase } from '../../src/database/db.js';
 
-describe('Events — Unit Tests', () => {
+describe('Events - Unit Tests', () => {
   let db;
 
   beforeAll(() => {

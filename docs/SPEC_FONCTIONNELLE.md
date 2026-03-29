@@ -1,4 +1,4 @@
-# Spécification Fonctionnelle — Sportix
+# Spécification Fonctionnelle - Sportix
 
 **Version** : 1.0.0
 **Auteur** : Alexis MASSOL

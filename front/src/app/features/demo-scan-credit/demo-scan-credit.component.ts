@@ -82,8 +82,8 @@ export class DemoScanCreditComponent {
   result: ScanResult | null = null;
 
   scenarios = [
-    { qrCode: 'REVNTy1DUkVESVQtT0s=', amount: 5, label: 'Paiement 5€', description: 'Solde suffisant — paiement accepté', icon: '💳' }, // Base64 de 'DEMO-CREDIT-OK'
-    { qrCode: 'REVNTy1DUkVESVQtT0s=', amount: 10, label: 'Paiement 10€', description: 'Solde suffisant — paiement accepté', icon: '💳' }, // Base64 de 'DEMO-CREDIT-OK'
+    { qrCode: 'REVNTy1DUkVESVQtT0s=', amount: 5, label: 'Paiement 5€', description: 'Solde suffisant - paiement accepté', icon: '💳' }, // Base64 de 'DEMO-CREDIT-OK'
+    { qrCode: 'REVNTy1DUkVESVQtT0s=', amount: 10, label: 'Paiement 10€', description: 'Solde suffisant - paiement accepté', icon: '💳' }, // Base64 de 'DEMO-CREDIT-OK'
     { qrCode: 'REVNTy1DUkVESVQtTE9X', amount: 100, label: 'Solde insuffisant', description: 'Le solde est trop bas pour ce montant', icon: '⚠️' }, // Base64 de 'DEMO-CREDIT-LOW'
     { qrCode: 'Q1JFSURUQ1JFQRlWRU5U', amount: 5, label: 'QR invalide', description: 'QR code non reconnu dans le système', icon: '🚫' }, // Base64 de 'CREDIT-INVALID'
   ];

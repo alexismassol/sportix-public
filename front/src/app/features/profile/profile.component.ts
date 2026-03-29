@@ -45,7 +45,7 @@ interface ProfileData {
               </div>
               <div class="flex items-center justify-between py-3" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
                 <span class="text-sm" style="color: rgba(255,255,255,0.5);">Rôle</span>
-                <span class="text-sm font-medium">{{ auth.user()?.role === 'club' ? 'Club — ' + auth.user()?.clubName : 'Spectateur' }}</span>
+                <span class="text-sm font-medium">{{ auth.user()?.role === 'club' ? 'Club - ' + auth.user()?.clubName : 'Spectateur' }}</span>
               </div>
             </div>
           </div>

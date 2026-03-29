@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import request from 'supertest';
 import app from '../../src/index.js';
 
-describe('Events — Integration Tests', () => {
+describe('Events - Integration Tests', () => {
   let server;
 
   beforeAll((done) => {

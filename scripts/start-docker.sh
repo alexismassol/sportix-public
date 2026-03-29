@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════
-# Docker Start Script — Sportix
+# Docker Start Script - Sportix
 # ═══════════════════════════════════════════════════════════════════════════
 #
 # Usage: ./scripts/start-docker.sh [OPTIONS]
@@ -51,7 +51,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo ""
-echo "🐳 Sportix — Docker"
+echo "🐳 Sportix - Docker"
 echo "================================"
 echo ""
 

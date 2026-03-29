@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { getTestDatabase } from '../../src/database/db.js';
 
-describe('Scan — Unit Tests', () => {
+describe('Scan - Unit Tests', () => {
   let db;
 
   beforeAll(() => {
@@ -22,13 +22,13 @@ describe('Scan — Unit Tests', () => {
 
     // Create tickets with various statuses
     db.prepare('INSERT INTO tickets (id, eventId, userId, qrCode, status, holderName, seatInfo) VALUES (?, ?, ?, ?, ?, ?, ?)').run(
-      'ticket-valid', 'evt-1', 'user-1', 'QR-VALID-001', 'valid', 'Jean Dupont', 'Tribune A — Rang 5'
+      'ticket-valid', 'evt-1', 'user-1', 'QR-VALID-001', 'valid', 'Jean Dupont', 'Tribune A - Rang 5'
     );
     db.prepare('INSERT INTO tickets (id, eventId, userId, qrCode, status, holderName, seatInfo, scannedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)').run(
-      'ticket-scanned', 'evt-1', 'user-1', 'QR-SCANNED-001', 'scanned', 'Jean Dupont', 'Tribune B — Rang 3', '2026-04-15T19:30:00Z'
+      'ticket-scanned', 'evt-1', 'user-1', 'QR-SCANNED-001', 'scanned', 'Jean Dupont', 'Tribune B - Rang 3', '2026-04-15T19:30:00Z'
     );
     db.prepare('INSERT INTO tickets (id, eventId, userId, qrCode, status, holderName, seatInfo) VALUES (?, ?, ?, ?, ?, ?, ?)').run(
-      'ticket-refunded', 'evt-1', 'user-1', 'QR-REFUNDED-001', 'refunded', 'Jean Dupont', 'Tribune C — Rang 10'
+      'ticket-refunded', 'evt-1', 'user-1', 'QR-REFUNDED-001', 'refunded', 'Jean Dupont', 'Tribune C - Rang 10'
     );
 
     // Create credit

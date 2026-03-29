@@ -1,5 +1,5 @@
 /**
- * V&V (Validation & Verification) — Cross-Flow Tests
+ * V&V (Validation & Verification) - Cross-Flow Tests
  *
  * Validates that the full business logic chain works correctly:
  * - Register → Login → Access protected routes → Scan ticket → Scan credit
@@ -28,7 +28,7 @@ afterAll(() => {
   closeDatabase();
 });
 
-describe('V&V — Cross-Flow Validation', () => {
+describe('V&V - Cross-Flow Validation', () => {
 
   // =========================================================================
   // VV-REQ-01: Auth flow produces valid JWT for all protected routes

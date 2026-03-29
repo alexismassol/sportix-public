@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      // Scroll top après rendu — sauf si fragment (géré par la page elle-même)
+      // Scroll top après rendu - sauf si fragment (géré par la page elle-même)
       const hasFragment = event.url.includes('#');
       if (this.isBrowser && !hasFragment) {
         requestAnimationFrame(() => {
